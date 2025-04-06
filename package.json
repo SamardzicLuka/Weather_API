@@ -1,0 +1,27 @@
+{
+  "name": "weather_api",
+  "version": "1.0.0",
+  "description": "Simple API built for practicing purposes. The goal of this project is learning about Redis and fetching from the third-party API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamardzicLuka/Weather_API.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SamardzicLuka/Weather_API/issues"
+  },
+  "homepage": "https://github.com/SamardzicLuka/Weather_API#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.9",
+    "redis": "^4.7.0"
+  }
+}
