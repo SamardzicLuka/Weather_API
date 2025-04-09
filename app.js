@@ -10,15 +10,32 @@ app.use(json());
 app.use(urlencoded({extended: false}));
 
 const limiter = rateLimit({
-    
+    windowsMs: 15 * 60 * 1000,
+    max: 10,
 });
 
 app.use(limiter);
 app.use('/api', weatherRoutes);
 
+app.use(function (error, req,res,next){
+    const statusCode = error.status || 500;
 
-app.use()
+    res.status(statusCode).json({
+        error:{
+            message: error.message,
+            status: statusCode,
+            stack: error.stack,
+        },
+    });
+});
+
+app.use(function (req, res, next){
+    const  error = new Error('Zahtev nije podrzan');
+    error.status = 405;
+
+    next(error);
+});
+connectRedis();
 
 module.exports = app;
-
 
