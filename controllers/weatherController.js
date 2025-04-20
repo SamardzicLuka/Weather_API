@@ -13,8 +13,10 @@ module.exports.cityWeather = async (req, res, next) => {
         }
         const requestOptions = {
             method: 'GET',
-            url: `${process.env.WEATHER_BASE}${city}/${date1}?api=${process.env.API_KEY}&unitGroup=metric`
+                                                // forming query depending on 'date' parameter 
+            url: `${process.env.WEATHER_BASE}${city}/${date1 ? '/' + date1 : ''}?key=${process.env.API_KEY}&unitGroup=metric`
         }
+
         const axResponse = await axios(requestOptions);
         const key = `${city.toLowerCase()}_${date1}`;
         client.set(key, JSON.stringify(axResponse.data), {EX: 43200});
@@ -31,3 +33,4 @@ module.exports.cityWeather = async (req, res, next) => {
         }
     }
 }
+
