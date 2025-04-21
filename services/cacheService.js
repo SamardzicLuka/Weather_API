@@ -3,7 +3,8 @@ const {connectRedis, client} = require('../config/redisClient');
 module.exports.checkCache = async (req, res, next) => {
     try{
         const city = req.params.city;
-        const date1 = req.params.date;
+        const date1 = req.params.date || ''; // this is the case if we dont specify the 2025-04-19                                          // parameter which is optional
+
         const cacheResult = await client.get(`${city.toLowerCase()}_${date1}`);
 
         if(cacheResult){
